@@ -1,36 +1,69 @@
 # CalAI Calculator OS CLI
 
-A modular, CRUDC-based calculator system with intelligent archive management.
+> Modular CRUDC archive calculator with AI core — runs anywhere Python runs.
 
-## Author
-Selvam + Copilot
+## Install
 
-## Features
-- Arithmetic: add, sub, mul, div (with zero-division guard)
-- **V Archive** — Store up to 30 results
-- **VF Archive** — Store up to 26 named formulas (A–Z)
-- **STRV Archive** — 30 data streams (A1–A30)
-- **VP Archive** — 30 process slots (B1–B30)
-- **VC Archive** — 30 CalAI chat histories (C1–C30)
-- **CalAI core** — Gemma-4 simulation engine
-
-## Run
 ```bash
-python3 calai_calculator.py
+pip install calai-calculator
+```
+
+## Usage
+
+```bash
+# Interactive REPL
+calai
+
+# One-shot
+calai add 5 3
+calai mul 6 7
+calai div 10 0
+
+# Smartwatch / minimal mode
+calai --watch
+
+# Version
+calai --version
 ```
 
 ## Commands
-| Command | Description |
-|---------|-------------|
-| `add X Y` | Add two numbers |
-| `sub X Y` | Subtract |
-| `mul X Y` | Multiply |
-| `div X Y` | Integer divide |
-| `vp SLOT` | Save process to VP archive |
-| `vc SLOT` | Save CalAI chat to VC archive |
-| `call CalAI QUERY` | Query the CalAI engine |
-| `list` | Show all archive contents |
-| `exit` | Quit |
+
+| Command | Example | Description |
+|---------|---------|-------------|
+| `add X Y` | `add 5 3` | Add → auto-saved to V |
+| `sub X Y` | `sub 10 4` | Subtract |
+| `mul X Y` | `mul 6 7` | Multiply |
+| `div X Y` | `div 20 4` | Integer divide |
+| `v SLOT VAL` | `v 1 42` | Save to V archive |
+| `vf SLOT EXPR` | `vf A "add(3,4)"` | Save formula to VF |
+| `strv SLOT VAL` | `strv A1 99` | Save stream to STRV |
+| `vp SLOT` | `vp B1` | Save process marker |
+| `vc SLOT` | `vc C1` | Save CalAI chat |
+| `call CalAI ...` | `call CalAI what is 2+2` | Query CalAI |
+| `read V 1` | `read VF A` | Read from archive |
+| `del V 1` | `del VP B1` | Delete from archive |
+| `list` | | Show all archives |
+
+## Archives
+
+| Archive | Slots | Purpose |
+|---------|-------|---------|
+| V | 30 | Auto-saved numeric results |
+| VF | 26 | Named formulas (A–Z) |
+| STRV | 30 | Data streams |
+| VP | 30 | Process markers |
+| VC | 30 | CalAI chat histories |
+
+## Smartwatch Mode
+
+Compact output designed for tiny screens (e.g. WearOS, Tizen):
+
+```bash
+calai --watch
+```
+
+## Author
+Selvam + Copilot
 
 ## License
 MIT
