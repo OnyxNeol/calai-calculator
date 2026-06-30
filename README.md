@@ -63,7 +63,8 @@ calai --watch
 ```
 
 ## Author
-Selvam + Copilot
+
+Onyxl
 
 ## License
 MIT
